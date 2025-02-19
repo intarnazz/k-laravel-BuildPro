@@ -1,8 +1,9 @@
 @component('layout.app')
-  @include('layout.header.main')
-  @component('layout.main')
-    @include('l')
+  @component('layout.form')
+    @if(Request::is('registration'))
+      @include('components.reg')
+    @elseif(Request::is('authorization'))
+      @include('components.login')
+    @endif
   @endcomponent
-  @include('layout.footer.main')
 @endcomponent
-

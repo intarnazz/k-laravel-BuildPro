@@ -48,6 +48,40 @@
 </header>
 
 <script type="module">
+  import {user} from '{{ asset('assets/js/user/user.js') }}'
+
+  window.user = user()
+  const defaultImage = "{{ asset('assets/img/anon.jpg') }}"
+
+
+  function headerUserInit() {
+    if (window.user) {
+      console.log(window.user)
+      const headerUser = document.getElementById('header-user')
+      headerUser.innerHTML = `
+  <li>
+    <a href="{{ route('profile') }}">
+      <div class="box-x gap">
+        <p>${window.user.login}</p>
+        ${window.user.image_id ?
+        `<img class="ava" src="http://localhost:8000/api/image/${window.user.image_id}" alt="${window.user.login}">`
+        :
+        `<img class="ava" src="${defaultImage}" alt="${window.user.login}">`
+      }
+      </div>
+    </a>
+  </li>
+  <li>
+    <button id='logout' class='button'>
+      Выйти
+    </button>
+  </li>
+`;
+    }
+  }
+
+  console.log('window.user', window.user)
+  headerUserInit()
 </script>
 
 

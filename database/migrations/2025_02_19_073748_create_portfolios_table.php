@@ -14,7 +14,7 @@ return new class extends Migration {
       $table->id();
       $table->foreignIdFor(model: \App\Models\Image::class)->constrained()->cascadeOnDelete();
       $table->string('name');
-      $table->string('description');
+      $table->text('description');
       $table->string('type');
       $table->integer('views')->default(0);
       $table->timestamps();

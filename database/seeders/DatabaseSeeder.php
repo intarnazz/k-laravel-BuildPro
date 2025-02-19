@@ -27,10 +27,6 @@ class DatabaseSeeder extends Seeder
           'description' => $faker->unique()->text(100),
           'price' => $faker->randomFloat(0, 2000, 20000),
         ]);
-      }
-    }
-    for ($i = 0; $i <= 16; $i++) {
-      foreach ($files as $file) {
         $image = \App\Models\Image::create([
           'path' => $file,
         ]);
@@ -38,7 +34,7 @@ class DatabaseSeeder extends Seeder
           'image_id' => $image->id,
           'name' => $faker->unique()->word,
           'type' => $image->path,
-          'description' => $faker->unique()->text(200),
+          'description' => $faker->unique()->text(1000),
         ]);
       }
     }

@@ -23,17 +23,31 @@
     width: 100%;
     position: relative;
   }
+
+  .text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+
 </style>
 
 <section class="catalog relative box-y gap">
-  @if(Request::is('catalog'))
-    <div class="box-x gap">
+  <div class="box-x gap">
+    @if(isset($order))
       @include('components.button.orderBy', ['key'=>'views', 'value'=>'По популярности'])
-      @include('components.button.orderBy', ['key'=>'price', 'value'=>'По цене'])
+      @if(Request::is('catalog'))
+        @include('components.button.orderBy', ['key'=>'price', 'value'=>'По цене'])
+      @endif
       @include('components.button.orderBy', ['key'=>'type', 'value'=>'По типу'])
-      <div class="flex"></div>
-    </div>
-  @endif
+    @endif
+    <div class="flex"></div>
+  </div>
   @if($catalog)
     <div class="catalog__content box-x gap">
       @foreach($catalog as $value)
@@ -53,11 +67,8 @@
                   <img src="{{ route('image', ['image'=>$value['image_id']]) }}"
                        alt="{{ $value['name'] }}">
                 </div>
-                <p class="">{{ $value['description'] }}</p>
+                <p class="text">{{ $value['description'] }}</p>
               </a>
           @endforeach
     </div>
 @endif
-
-
-

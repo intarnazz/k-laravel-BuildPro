@@ -5,11 +5,12 @@
   }
 
   .bg {
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
     height: 70dvh;
+    margin-bottom: -70dvh;
     background: linear-gradient(#0777ff, #ffffff00);
   }
 
@@ -27,6 +28,7 @@
   <div class="main__content relative">
     {{ $slot }}
   </div>
+  <div class="flex"></div>
 </main>
 
 <script>

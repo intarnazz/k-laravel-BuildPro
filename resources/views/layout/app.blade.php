@@ -11,21 +11,21 @@
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 </head>
 <script type="module">
-  {{--import {GetUser} from '{{ asset('assets/js/api/api.js') }}'--}}
-  {{--import {user, setUser} from '{{ asset('assets/js/user/user.js') }}'--}}
+  import {GetUser} from '{{ asset('assets/js/api/api.js') }}'
+  import {user, setUser} from '{{ asset('assets/js/user/user.js') }}'
 
-  // window.user = user()
-  //
-  // async function init() {
-  //   const res = await GetUser()
-  //   if (res.success) {
-  //     window.user = res.data
-  //     setUser(res.data)
-  //     console.log('setUser(res.data)')
-  //   }
-  // }
-  //
-  // init()
+  window.user = user()
+
+  async function init() {
+    const res = await GetUser()
+    if (res.success) {
+      window.user = res.data
+      setUser(res.data)
+      console.log('setUser(res.data)')
+    }
+  }
+
+  init()
 </script>
 <script type="module">
 </script>

@@ -42,7 +42,6 @@
             <p>{{$item['price']}}</p>
           </li>
         @endif
-
       </ul>
     </div>
   </div>

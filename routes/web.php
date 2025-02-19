@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 
@@ -9,8 +10,11 @@ Route::get('/', function () {
   $request->headers->set('take', 4);
   $catalogController = app(CatalogController::class);
   $response = $catalogController->get($request);
-  $catalog = json_decode($response->getContent(), true)['data'];
-  return view('index', compact('catalog'));
+  $catalogs[] = json_decode($response->getContent(), true)['data'];
+  $catalogController = app(PortfolioController::class);
+  $response = $catalogController->get($request);
+  $catalogs[] = json_decode($response->getContent(), true)['data'];
+  return view('index', compact('catalogs'));
 })->name('home');
 
 
@@ -48,7 +52,7 @@ Route::get('/portfolio', function () {
   $request->headers->set('take', $count);
   $request->headers->set('order', $order);
   $request->headers->set('direction', $direction);
-  $app = app(\App\Http\Controllers\PortfolioController::class);
+  $app = app(PortfolioController::class);
   $response = $app->get($request);
   $res = json_decode($response->getContent(), true);
   $catalog = $res['data'];
