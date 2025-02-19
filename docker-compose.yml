@@ -12,7 +12,7 @@ services:
         volumes:
             - app-data:/var/www
             - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-            - ./storage:/var/www/storage
+            - app-storage:/var/www/storage
             - ./app:/var/www/app
             - ./resources:/var/www/resources
             - ./routes:/var/www/routes

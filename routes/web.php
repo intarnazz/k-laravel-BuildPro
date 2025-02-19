@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('/catalog', function () {
-  $count = 9 * 2;
+  $count = 4 * 3;
   $request = Request::instance();
   $page = $request->query('page', 1);
   $order = $request->query('order', 'views');
@@ -43,7 +43,7 @@ Route::get('/catalog', function () {
 })->name('catalog');
 
 Route::get('/portfolio', function () {
-  $count = 9 * 2;
+  $count = 4 * 3;
   $request = Request::instance();
   $page = $request->query('page', 1);
   $order = $request->query('order', 'views');

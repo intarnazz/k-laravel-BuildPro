@@ -17,6 +17,8 @@ return new class extends Migration {
       $table->text('description');
       $table->string('type');
       $table->integer('views')->default(0);
+      $table->integer('time_value');
+      $table->enum('time_unit', ['hour', 'day', 'week', 'month']);
       $table->timestamps();
     });
   }

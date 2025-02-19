@@ -17,5 +17,5 @@ export const logout = () => {
   UserLogout()
   sessionStorage.removeItem('token')
   sessionStorage.removeItem('user')
-  window.location.href = '/'
+  window.location.reload();
 }

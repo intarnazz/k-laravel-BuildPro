@@ -6,15 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Catalog extends Model
 {
-    protected $guarded = ['id'];
+  protected $guarded = ['id'];
 
-    public function full()
-    {
-        return $this->load('image');
-    }
+  public function full()
+  {
+    return $this->load([
+      'image',
+      'comment' => function ($query) {
+        $query->with('user');
+      }
+    ]);
+  }
 
-    public function image()
-    {
-        return $this->belongsTo(related: Image::class);
-    }
+  public function image()
+  {
+    return $this->belongsTo(related: Image::class);
+  }
+
+  public function comment()
+  {
+    return $this->hasMany(related: Comment::class);
+  }
 }

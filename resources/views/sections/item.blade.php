@@ -25,23 +25,27 @@
       </div>
       <ul class="box-y gap">
         <li class="box-x gap ai">
-          <p>описание</p>
+          <p>Описание</p>
           <p>{{$item['description']}}</p>
         </li>
         <li class="box-x gap ai">
-          <p>тип</p>
+          <p>Тип</p>
           <p>{{$item['type']}}</p>
         </li>
         <li class="box-x gap ai">
-          <p>просмотры</p>
+          <p>Просмотры</p>
           <p>{{$item['views']}}</p>
         </li>
         @if(isset($item['price']))
           <li class="box-x gap ai">
-            <p>цена</p>
+            <p>Цена</p>
             <p>{{$item['price']}}</p>
           </li>
         @endif
+        <li class="box-x gap ai">
+          <p>Сроки работы</p>
+          <p>{{ $item['time_value'] }} {{ $item['time_unit'] }}</p>
+        </li>
       </ul>
     </div>
   </div>

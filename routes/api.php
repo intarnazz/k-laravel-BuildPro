@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\CommentController;
 
 
 Route::post('/authorization', [UserController::class, 'login']);
@@ -16,13 +17,12 @@ Route::get('/catalog', [CatalogController::class, 'get']);
 Route::get('/catalog/{catalog}', [CatalogController::class, 'id']);
 
 Route::middleware('auth:api')->group(function () {
-  Route::get('/profile', function () {
-    $user = auth()->user();
-    return view('profile', compact('user'));
-  });
-
   Route::post('/image', [ImageController::class, 'add']);
   Route::get('/user', [UserController::class, 'get']);
   Route::get('/logout', [UserController::class, 'logout']);
+
+  Route::post('/comment', [CommentController::class, 'add']);
+  Route::patch('/comment/{comment}', [CommentController::class, 'patch']);
+  Route::delete('/comment/{comment}', [CommentController::class, 'delete']);
 });
 

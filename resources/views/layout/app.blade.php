@@ -31,11 +31,7 @@
 </script>
 
 <style>
-  .ava {
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-  }
+
 </style>
 <body id="app">
 {{ $slot }}
@@ -56,4 +52,9 @@
   document.querySelectorAll(".price").forEach(e => {
     e.innerHTML = `${price(+e.innerHTML)}`;
   });
+  if (window.user) {
+    document.querySelectorAll(".user").forEach(e => {
+      e.style.display = "flex";
+    });
+  }
 </script>

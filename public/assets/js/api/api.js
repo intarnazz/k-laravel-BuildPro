@@ -38,3 +38,8 @@ const Push = async (url, method, data) => {
 export const GetUser = async () => await Get(`${API_URL}user`)
 export const UserLogout = async () => await Get(`${API_URL}logout`)
 
+export const AddComment = async (data) => await Post(`${API_URL}comment`, data)
+export const DeleteComment = async (data) => await Push('comment', 'DELETE', data)
+export const PatchComment = async (data) => await Push('comment', 'PATCH', data)
+
+

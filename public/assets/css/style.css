@@ -50,12 +50,18 @@ html {
   justify-content: center;
 }
 
-.ai{
+.ai {
   align-items: start;
 }
 
 .gap {
   gap: 1rem;
+}
+
+.h2 {
+  font-size: 2rem;
+  background-color: #fff;
+  padding: .5rem 1rem;
 }
 
 .relative {
@@ -128,6 +134,14 @@ button {
   user-select: none;
 }
 
+button:disabled {
+  background-color: #808080;
+}
+
+.button:disabled:hover {
+  background-color: #808080;
+}
+
 button:focus {
   outline: none;
 }
@@ -163,7 +177,6 @@ select {
 
 .button:hover {
   background-color: #e0c510;
-
 }
 
 .hover {
@@ -183,4 +196,14 @@ select {
   padding: 1em 2em;
   border-radius: 100px;
   animation: 60s infinite alternate mark-animation;
+}
+
+.user {
+  display: none;
+}
+
+.ava {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
 }

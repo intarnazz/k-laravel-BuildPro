@@ -12,7 +12,7 @@
     padding: 1rem;
   }
 
-  .catalog img {
+  .catalog__img {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -64,10 +64,11 @@
                   @endif
                 </div>
                 <div class="img__wrapper flex center">
-                  <img src="{{ route('image', ['image'=>$value['image_id']]) }}"
+                  <img class="catalog__img" src="{{ route('image', ['image'=>$value['image_id']]) }}"
                        alt="{{ $value['name'] }}">
                 </div>
                 <p class="text">{{ $value['description'] }}</p>
+                <p>{{ $value['time_value'] }} {{ $value['time_unit'] }}</p>
               </a>
           @endforeach
     </div>

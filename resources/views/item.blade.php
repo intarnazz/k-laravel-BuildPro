@@ -4,7 +4,12 @@
     @component('layout.wrapper')
       @include('sections.item')
       @if(isset($catalog))
-        @include('sections.catalog', ['portfolio'=>true])
+        <div class="box-y gap ai">
+          <h2 class="h2">Похожие работы</h2>
+          @include('sections.catalog', ['portfolio'=>true])
+          <div class=""></div>
+          @include('sections.comments')
+        </div>
       @endif
     @endcomponent
   @endcomponent
