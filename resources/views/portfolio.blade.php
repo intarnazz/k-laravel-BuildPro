@@ -1,0 +1,9 @@
+@component('layout.app')
+  @component('layout.form')
+    @if(Request::is('registration'))
+      @include('components.reg')
+    @elseif(Request::is('authorization'))
+      @include('components.login')
+    @endif
+  @endcomponent
+@endcomponent

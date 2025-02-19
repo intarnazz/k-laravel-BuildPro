@@ -25,7 +25,6 @@
   }
 </style>
 
-
 <section class="catalog relative box-y gap">
   @if(Request::is('catalog'))
     <div class="box-x gap">
@@ -38,17 +37,27 @@
   @if($catalog)
     <div class="catalog__content box-x gap">
       @foreach($catalog as $value)
-        <div class="catalog__item box-y gap ai">
-          <h3>{{ $value['name'] }}</h3>
-          <div class="img__wrapper flex center">
-            <img src="{{ route('image', ['image'=>$value['image_id']]) }}" alt="{{ $value['name'] }}">
-          </div>
-        </div>
-      @endforeach
+        @if(!isset($portfolio))
+          <a href="{{ route('item', ['catalog'=> $value['id']]) }}" class="catalog__item box-y gap">
+            @else
+              <a href="{{ route('portfolio-item', ['portfolio'=> $value['id']]) }}"
+                 class="catalog__item box-y gap">
+                @endif
+                <div class="box-x">
+                  <h3>{{ $value['name'] }}</h3>
+                  @if(!isset($portfolio))
+                    <p class="price">{{ $value['price'] }}</p>
+                  @endif
+                </div>
+                <div class="img__wrapper flex center">
+                  <img src="{{ route('image', ['image'=>$value['image_id']]) }}"
+                       alt="{{ $value['name'] }}">
+                </div>
+                <p class="">{{ $value['description'] }}</p>
+              </a>
+          @endforeach
     </div>
-  @endif
-
-</section>
+@endif
 
 
 

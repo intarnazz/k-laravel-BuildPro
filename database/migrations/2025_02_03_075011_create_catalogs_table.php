@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->integer('price');
             $table->string('description');
-            $table->string('type')->default('plant');
+            $table->string('type');
             $table->integer('views')->default(0);
             $table->timestamps();
         });

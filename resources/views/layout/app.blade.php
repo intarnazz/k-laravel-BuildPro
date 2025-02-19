@@ -13,7 +13,6 @@
 <script type="module">
   {{--import {GetUser} from '{{ asset('assets/js/api/api.js') }}'--}}
   {{--import {user, setUser} from '{{ asset('assets/js/user/user.js') }}'--}}
-  import {title, price} from '{{ asset('assets/js/utilte/utilte.js') }}'
 
   // window.user = user()
   //
@@ -44,6 +43,8 @@
 </html>
 
 <script type="module">
+  import {title, price} from '{{ asset('assets/js/utilte/utilte.js') }}'
+
   import {logout} from '{{ asset('assets/js/user/user.js') }}'
 
   document.addEventListener('click', (event) => {
@@ -51,5 +52,8 @@
     if (id === 'logout') {
       logout();
     }
+  });
+  document.querySelectorAll(".price").forEach(e => {
+    e.innerHTML = `${price(+e.innerHTML)}`;
   });
 </script>

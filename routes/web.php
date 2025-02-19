@@ -27,8 +27,10 @@ Route::get('/catalog', function () {
   $app = app(CatalogController::class);
   $response = $app->get($request);
   $res = json_decode($response->getContent(), true);
+  $catalog = $res['data'];
   return view('catalog', compact(
     'res',
+    'catalog',
     'count',
     'page',
     'order',
@@ -36,12 +38,48 @@ Route::get('/catalog', function () {
   ));
 })->name('catalog');
 
+Route::get('/portfolio', function () {
+  $count = 9 * 2;
+  $request = Request::instance();
+  $page = $request->query('page', 1);
+  $order = $request->query('order', 'views');
+  $direction = $request->query('direction', 'desc');
+  $request->headers->set('skip', ($page - 1) * $count);
+  $request->headers->set('take', $count);
+  $request->headers->set('order', $order);
+  $request->headers->set('direction', $direction);
+  $app = app(\App\Http\Controllers\PortfolioController::class);
+  $response = $app->get($request);
+  $res = json_decode($response->getContent(), true);
+  $catalog = $res['data'];
+  return view('portfolio', compact(
+    'res',
+    'catalog',
+    'count',
+    'page',
+    'order',
+    'direction',
+  ));
+})->name('portfolio');
+
 Route::get('/catalog/{catalog}', function (\App\Models\Catalog $catalog) {
   $catalog->views += 1;
   $catalog->save();
-  $catalog->full();
-  return view('item', compact('catalog'));
+  $item = $catalog->full();
+  $catalog = \App\Models\Portfolio::with(['image'])
+    ->where('type', $item['type'])
+    ->skip(0)
+    ->take(4)
+    ->get();
+  return view('item', compact('item', 'catalog'));
 })->name('item');
+
+Route::get('/portfolio/{portfolio}', function (\App\Models\Portfolio $portfolio) {
+  $portfolio->views += 1;
+  $portfolio->save();
+  $item = $portfolio->full();
+  return view('item', compact('item'));
+})->name('portfolio-item');
 
 Route::get('/registration', function () {
   return view('form');

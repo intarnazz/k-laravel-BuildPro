@@ -1,10 +1,7 @@
 @component('layout.app')
   @include('layout.header.main')
   @component('layout.main')
-    @component('layout.wrapper')
-      @include('sections.welcome')
-      @include('sections.catalog')
-    @endcomponent
+    @include('l')
   @endcomponent
   @include('layout.footer.main')
 @endcomponent

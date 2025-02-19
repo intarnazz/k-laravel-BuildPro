@@ -13,15 +13,16 @@
 
 <header id="header" class="header box-x">
   <div class="box-x gap">
-    <a href="{{ route('home') }}">
-      <h2>
-        BuildPro
-      </h2>
-    </a>
+    @include('components.logo')
   </div>
 
   <nav>
     <ul class="box-x gap2">
+      <li>
+        <a href="{{ route('portfolio') }}">
+          Портфолио
+        </a>
+      </li>
       <li>
         <a href="{{ route('catalog') }}">
           Каталог

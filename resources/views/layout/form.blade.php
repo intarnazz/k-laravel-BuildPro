@@ -54,8 +54,7 @@
         <div class="box-y gap">
           <div class="box-x gap">
             @include('components.logo')
-            <a class="a"
-               href="{{ url()->previous() !== url()->current() ? url()->previous() : route('home') }}">Назад</a>
+            @include('components.button.back')
             @if(Request::is('registration'))
               <a class="a"
                  href="{{ route('login') }}">Войти</a>

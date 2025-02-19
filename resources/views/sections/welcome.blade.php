@@ -26,13 +26,12 @@
 </style>
 
 
-<section class="welcome ">
-  <div class="bg"></div>
+<section class="welcome">
+{{--  <div class="bg"></div>--}}
   <div class="relative ai box-y gap">
     <h2>$0 for 30 days Fast, free shipping</h2>
-    <button class="button">Try prime</button>
+    <a href="{{ route('catalog') }}" class="button">Try prime</a>
   </div>
-
 </section>
 
 
