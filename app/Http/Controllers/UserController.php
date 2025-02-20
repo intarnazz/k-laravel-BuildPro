@@ -13,7 +13,7 @@ class UserController extends Controller
 {
   public function get()
   {
-    $user = auth()->user();
+    $user = auth()->user()->full();
     return new SuccessResponse($user);
   }
 

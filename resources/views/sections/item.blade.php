@@ -46,13 +46,25 @@
           <p>Сроки работы</p>
           <p>{{ $item['time_value'] }} {{ $item['time_unit'] }}</p>
         </li>
+        @if(isset($item['price']))
+          <li class="user box-x gap ai">
+            <button class="button deleteApplication">Заказать</button>
+          </li>
+        @endif
       </ul>
     </div>
   </div>
 </section>
 
-<script>
+<script type="module">
+  import {AddApplication} from "{{ asset('assets/js/api/api.js') }}"
 
+  document.getElementById('deleteApplication').addEventListener('click', async () => {
+    const res = await AddApplication({catalog_id: "{{ $item['id'] }}"})
+    if (res.success) {
+      window.location.reload()
+    }
+  })
 </script>
 
 

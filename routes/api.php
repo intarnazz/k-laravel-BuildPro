@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ApplicationController;
 
 
 Route::post('/authorization', [UserController::class, 'login']);
@@ -24,5 +25,9 @@ Route::middleware('auth:api')->group(function () {
   Route::post('/comment', [CommentController::class, 'add']);
   Route::patch('/comment/{comment}', [CommentController::class, 'patch']);
   Route::delete('/comment/{comment}', [CommentController::class, 'delete']);
+
+  Route::post('/application', [ApplicationController::class, 'add']);
+  Route::patch('/application/{application}', [ApplicationController::class, 'patch']);
+  Route::delete('/application/{application}', [ApplicationController::class, 'delete']);
 });
 

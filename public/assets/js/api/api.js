@@ -42,4 +42,8 @@ export const AddComment = async (data) => await Post(`${API_URL}comment`, data)
 export const DeleteComment = async (data) => await Push('comment', 'DELETE', data)
 export const PatchComment = async (data) => await Push('comment', 'PATCH', data)
 
+export const AddApplication = async (data) => await Post(`${API_URL}application`, data)
+export const DeleteApplication = async (data) => await Push(`application`, 'DELETE', data)
+export const PatchApplication = async (data) => await Push(`application`, 'PATCH', data)
+
 

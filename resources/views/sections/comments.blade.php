@@ -24,8 +24,10 @@
   <ul class="gap2 box-y ai">
     @foreach($item['comment'] as $value)
       <li class="box-x gap comments__item">
-        <img src="{{ route('image', ['image'=>$value['user']['image_id']]) }}" alt="{{ $value['user']['login'] }}"
-             class="ava">
+        <img
+          src="{{ isset($value['user']['image_id']) ? route('image', ['image' => $value['user']['image_id']]) : asset('assets/img/anon.jpg') }}"
+          alt="{{ $value['user']['login']}}"
+          class="ava">
         <div class="box-y gap ai">
           <h3>{{$value['user']['login']}}</h3>
           <p>{{ $value['text'] }}</p>

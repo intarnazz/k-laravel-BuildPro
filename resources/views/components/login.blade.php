@@ -28,7 +28,7 @@
       password: password,
     })
     if (res.success) {
-      window.location.pathname = '/profile'
+      window.location.href = '{{ route('home') }}'
     }
   })
 

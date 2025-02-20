@@ -16,11 +16,14 @@
 
 
 <script type="module">
+  console.log('profile', window.user)
   import {SendImage} from '{{ asset('assets/js/api/api.js') }}'
+  import {DeleteApplication} from "{{ asset('assets/js/api/api.js') }}"
 
   const defaultImage = "{{ asset('assets/img/anon.jpg') }}"
 
   document.getElementById('profile').innerHTML = `
+<div class="box-y gap">
   <div class="box-x flex item__info gap2">
     <div class="ava__wrapper box-y gap">
 ${window.user.image_id ?
@@ -40,9 +43,36 @@ ${window.user.image_id ?
    <h1> ${window.user.login}  </h1>
     </div>
   </div>
+<div class="box-x">
+<h2 class="h2 box">Список заявок</h2>
+<div class="flex"></div>
+</div>
+    <ul class="box-y gap">
+${list(window.user.application)}
+</ul>
+</div>
 `
 
-  console.log('JS')
+  function list(list) {
+    let s = ''
+    list.forEach((e) => {
+      s += `
+<div class="box box-x">
+<h3>
+${e.catalog.name}
+</h3>
+<div class="box-x gap">
+<p>
+${e.status}
+</p>
+<button data-catalog-id="${e.id}" class="DeleteApplication button">Удадить</button>
+</div>
+
+</div>
+      `
+    })
+    return s
+  }
 
   function handleFile() {
     const files = document.getElementById('file');
@@ -65,6 +95,17 @@ ${window.user.image_id ?
     if (id === 'saveImage') {
       handleFile();
     }
+  });
+
+  document.querySelectorAll('.DeleteApplication').forEach(button => {
+    button.addEventListener('click', async () => {
+      const catalog_id = button.dataset.catalogId;
+      console.log('id', catalog_id)
+      const res = await DeleteApplication({id: catalog_id});
+      if (res.success) {
+        window.location.reload();
+      }
+    });
   });
 </script>
 

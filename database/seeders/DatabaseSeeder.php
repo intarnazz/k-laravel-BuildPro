@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Application;
 use App\Models\Catalog;
-use App\Models\CatalogComment;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\User;
@@ -76,5 +76,14 @@ class DatabaseSeeder extends Seeder
         ]);
       }
     }
+
+    $user = User::create([
+      'login' => 'admin',
+      'password' => 'admin',
+    ]);
+    Application::create([
+      'catalog_id' => $catalog->id,
+      'user_id' => $user->id,
+    ]);
   }
 }

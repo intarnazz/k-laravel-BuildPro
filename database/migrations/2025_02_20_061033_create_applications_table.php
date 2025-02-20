@@ -10,11 +10,11 @@ return new class extends Migration {
    */
   public function up(): void
   {
-    Schema::create('application_requests', function (Blueprint $table) {
+    Schema::create('applications', function (Blueprint $table) {
       $table->id();
       $table->foreignIdFor(model: \App\Models\User::class)->nullable()->constrained()->cascadeOnDelete();
       $table->foreignIdFor(model: \App\Models\Catalog::class)->nullable()->constrained()->cascadeOnDelete();
-      $table->string('status');
+      $table->enum('status', ['новая', 'в процессе', 'выполнена'])->default('новая');
       $table->timestamps();
     });
   }
@@ -24,6 +24,6 @@ return new class extends Migration {
    */
   public function down(): void
   {
-    Schema::dropIfExists('application_requests');
+    Schema::dropIfExists('applications');
   }
 };

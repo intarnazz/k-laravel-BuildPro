@@ -27,12 +27,27 @@ class User extends Authenticatable
    * @var array<string, string>
    */
   protected $hidden = [
+    'api_token',
     'password',
   ];
+
+  public function full()
+  {
+    return $this->load([
+      'application' => function ($query) {
+        $query->with('catalog');
+      }
+    ]);
+  }
 
   public function image()
   {
     return $this->belongsTo(related: Image::class);
+  }
+
+  public function application()
+  {
+    return $this->hasMany(related: Application::class);
   }
 
   public function setPasswordAttribute($value)

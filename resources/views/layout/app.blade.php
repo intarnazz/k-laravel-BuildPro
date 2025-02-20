@@ -17,11 +17,13 @@
   window.user = user()
 
   async function init() {
+    console.log('init')
     const res = await GetUser()
     if (res.success) {
       window.user = res.data
+      console.log('res.data', res.data)
+      console.log('user()', user())
       setUser(res.data)
-      console.log('setUser(res.data)')
     }
   }
 
@@ -40,7 +42,6 @@
 
 <script type="module">
   import {title, price} from '{{ asset('assets/js/utilte/utilte.js') }}'
-
   import {logout} from '{{ asset('assets/js/user/user.js') }}'
 
   document.addEventListener('click', (event) => {
