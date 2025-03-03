@@ -97,15 +97,15 @@ ${e.status}
     }
   });
 
-  document.querySelectorAll('.DeleteApplication').forEach(button => {
-    button.addEventListener('click', async () => {
-      const catalog_id = button.dataset.catalogId;
-      console.log('id', catalog_id)
-      const res = await DeleteApplication({id: catalog_id});
+  document.addEventListener('click', async function (event) {
+    if (event.target && event.target.classList.contains('DeleteApplication')) {
+      const id = event.target.getAttribute('data-catalog-id');
+      const res = await DeleteApplication({id: id})
       if (res.success) {
-        window.location.reload();
+        init()
+        window.location.reload()
       }
-    });
+    }
   });
 </script>
 

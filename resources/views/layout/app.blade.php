@@ -14,9 +14,7 @@
   import {GetUser} from '{{ asset('assets/js/api/api.js') }}'
   import {user, setUser} from '{{ asset('assets/js/user/user.js') }}'
 
-  window.user = user()
-
-  async function init() {
+  window.init = async function () {
     console.log('init')
     const res = await GetUser()
     if (res.success) {
@@ -25,11 +23,9 @@
       console.log('user()', user())
       setUser(res.data)
     }
+    window.user = user()
   }
-
   init()
-</script>
-<script type="module">
 </script>
 
 <style>
@@ -38,8 +34,6 @@
 <body id="app">
 {{ $slot }}
 </body>
-</html>
-
 <script type="module">
   import {title, price} from '{{ asset('assets/js/utilte/utilte.js') }}'
   import {logout} from '{{ asset('assets/js/user/user.js') }}'
@@ -59,3 +53,6 @@
     });
   }
 </script>
+</html>
+
+

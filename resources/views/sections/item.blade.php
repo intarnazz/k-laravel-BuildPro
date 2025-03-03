@@ -48,7 +48,7 @@
         </li>
         @if(isset($item['price']))
           <li class="user box-x gap ai">
-            <button class="button deleteApplication">Заказать</button>
+            <button data-id="{{ $item['id'] }}" class="button addApplication">Заказать</button>
           </li>
         @endif
       </ul>
@@ -59,12 +59,15 @@
 <script type="module">
   import {AddApplication} from "{{ asset('assets/js/api/api.js') }}"
 
-  document.getElementById('deleteApplication').addEventListener('click', async () => {
-    const res = await AddApplication({catalog_id: "{{ $item['id'] }}"})
-    if (res.success) {
-      window.location.reload()
+  document.addEventListener('click', async function (event) {
+    if (event.target && event.target.classList.contains('addApplication')) {
+      const id = event.target.getAttribute('data-id');
+      const res = await AddApplication({catalog_id: id})
+      if (res.success) {
+        init()
+      }
     }
-  })
+  });
 </script>
 
 
